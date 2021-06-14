@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Db_KurumsalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Tbl_Admin">
+    <Key>
+      <PropertyRef Name="AdminId" />
+    </Key>
+    <Property Name="AdminId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Eposta" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Sifre" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Yetki" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tbl_Bilgi">
+    <Key>
+      <PropertyRef Name="BilgiId" />
+    </Key>
+    <Property Name="BilgiId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="150" />
+    <Property Name="Keywords" Type="nvarchar" MaxLength="250" />
+    <Property Name="Description" Type="nvarchar" MaxLength="250" />
+    <Property Name="LogoURL" Type="nvarchar" MaxLength="250" />
+    <Property Name="Unvan" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Tbl_Blog">
+    <Key>
+      <PropertyRef Name="BlogId" />
+    </Key>
+    <Property Name="BlogId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Baslik" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Icerik" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ResimURL" Type="nvarchar" MaxLength="250" />
+    <Property Name="KategoriId" Type="int" />
+  </EntityType>
+  <EntityType Name="Tbl_Hakkimizda">
+    <Key>
+      <PropertyRef Name="HakkimizdaId" />
+    </Key>
+    <Property Name="HakkimizdaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Aciklama" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Tbl_Hizmet">
+    <Key>
+      <PropertyRef Name="HizmetId" />
+    </Key>
+    <Property Name="HizmetId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Baslik" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Aciklama" Type="nvarchar" MaxLength="500" />
+    <Property Name="ResimURL" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="Tbl_Iletisim">
+    <Key>
+      <PropertyRef Name="IletisimId" />
+    </Key>
+    <Property Name="IletisimId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Adres" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Telefon" Type="nvarchar" MaxLength="50" />
+    <Property Name="Fax" Type="nvarchar" MaxLength="50" />
+    <Property Name="Whatsapp" Type="nvarchar" MaxLength="50" />
+    <Property Name="Facebook" Type="nvarchar" MaxLength="50" />
+    <Property Name="Twitter" Type="nvarchar" MaxLength="50" />
+    <Property Name="Instagram" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Tbl_Kategori">
+    <Key>
+      <PropertyRef Name="KategoriId" />
+    </Key>
+    <Property Name="KategoriId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KategoriAd" Type="nvarchar" MaxLength="50" />
+    <Property Name="Aciklama" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <Association Name="FK_Tbl_Blog_Tbl_Kategori">
+    <End Role="Tbl_Kategori" Type="Self.Tbl_Kategori" Multiplicity="0..1" />
+    <End Role="Tbl_Blog" Type="Self.Tbl_Blog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Kategori">
+        <PropertyRef Name="KategoriId" />
+      </Principal>
+      <Dependent Role="Tbl_Blog">
+        <PropertyRef Name="KategoriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Db_KurumsalModelStoreContainer">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tbl_Admin" EntityType="Self.Tbl_Admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tbl_Bilgi" EntityType="Self.Tbl_Bilgi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tbl_Blog" EntityType="Self.Tbl_Blog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tbl_Hakkimizda" EntityType="Self.Tbl_Hakkimizda" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tbl_Hizmet" EntityType="Self.Tbl_Hizmet" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tbl_Iletisim" EntityType="Self.Tbl_Iletisim" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tbl_Kategori" EntityType="Self.Tbl_Kategori" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Tbl_Blog_Tbl_Kategori" Association="Self.FK_Tbl_Blog_Tbl_Kategori">
+      <End Role="Tbl_Kategori" EntitySet="Tbl_Kategori" />
+      <End Role="Tbl_Blog" EntitySet="Tbl_Blog" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

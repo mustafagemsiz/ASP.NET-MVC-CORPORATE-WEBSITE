@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Db_KurumsalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Tbl_Admin">
+    <Key>
+      <PropertyRef Name="AdminId" />
+    </Key>
+    <Property Name="AdminId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Eposta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Yetki" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tbl_Bilgi">
+    <Key>
+      <PropertyRef Name="BilgiId" />
+    </Key>
+    <Property Name="BilgiId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Keywords" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="LogoURL" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Unvan" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Tbl_Blog">
+    <Key>
+      <PropertyRef Name="BlogId" />
+    </Key>
+    <Property Name="BlogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Baslik" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Icerik" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ResimURL" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="KategoriId" Type="Int32" />
+    <NavigationProperty Name="Tbl_Kategori" Relationship="Self.FK_Tbl_Blog_Tbl_Kategori" FromRole="Tbl_Blog" ToRole="Tbl_Kategori" />
+  </EntityType>
+  <EntityType Name="Tbl_Hakkimizda">
+    <Key>
+      <PropertyRef Name="HakkimizdaId" />
+    </Key>
+    <Property Name="HakkimizdaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Aciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Tbl_Hizmet">
+    <Key>
+      <PropertyRef Name="HizmetId" />
+    </Key>
+    <Property Name="HizmetId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Baslik" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Aciklama" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="ResimURL" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Tbl_Iletisim">
+    <Key>
+      <PropertyRef Name="IletisimId" />
+    </Key>
+    <Property Name="IletisimId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Adres" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Telefon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Whatsapp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Facebook" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Twitter" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Instagram" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Tbl_Kategori">
+    <Key>
+      <PropertyRef Name="KategoriId" />
+    </Key>
+    <Property Name="KategoriId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KategoriAd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Aciklama" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Tbl_Blog" Relationship="Self.FK_Tbl_Blog_Tbl_Kategori" FromRole="Tbl_Kategori" ToRole="Tbl_Blog" />
+  </EntityType>
+  <Association Name="FK_Tbl_Blog_Tbl_Kategori">
+    <End Role="Tbl_Kategori" Type="Self.Tbl_Kategori" Multiplicity="0..1" />
+    <End Role="Tbl_Blog" Type="Self.Tbl_Blog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Kategori">
+        <PropertyRef Name="KategoriId" />
+      </Principal>
+      <Dependent Role="Tbl_Blog">
+        <PropertyRef Name="KategoriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Db_KurumsalEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Tbl_Admin" EntityType="Self.Tbl_Admin" />
+    <EntitySet Name="Tbl_Bilgi" EntityType="Self.Tbl_Bilgi" />
+    <EntitySet Name="Tbl_Blog" EntityType="Self.Tbl_Blog" />
+    <EntitySet Name="Tbl_Hakkimizda" EntityType="Self.Tbl_Hakkimizda" />
+    <EntitySet Name="Tbl_Hizmet" EntityType="Self.Tbl_Hizmet" />
+    <EntitySet Name="Tbl_Iletisim" EntityType="Self.Tbl_Iletisim" />
+    <EntitySet Name="Tbl_Kategori" EntityType="Self.Tbl_Kategori" />
+    <AssociationSet Name="FK_Tbl_Blog_Tbl_Kategori" Association="Self.FK_Tbl_Blog_Tbl_Kategori">
+      <End Role="Tbl_Kategori" EntitySet="Tbl_Kategori" />
+      <End Role="Tbl_Blog" EntitySet="Tbl_Blog" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
