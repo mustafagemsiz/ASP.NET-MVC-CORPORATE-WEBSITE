@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<script>
+    CKEDITOR.replace('editor')
+</script>
+
+<h4>Hizmet Ekleme Paneli</h4>
+<hr />
+<div class="form">
+    <form class="form-validate form-horizontal" id="feedback_form" method="post" action="/Hizmet/Create/" enctype="multipart/form-data">
+        <div class="form-group ">
+            <label for="cname" class="control-label col-lg-2">Başlık<span class="required">*</span></label>
+            <div class="col-lg-10">
+                <input class="form-control" id="Baslik" name="Baslik" minlength="5" type="text" required />
+            </div>
+        </div>
+        <div class="form-group ">
+            <label for="cemail" class="control-label col-lg-2">Açıklama<span class="required">*</span></label>
+            <div class="col-lg-10">
+                <textarea name="Aciklama" class="ckeditor" required>
+            </textarea>
+            </div>
+        </div>
+        <div class="form-group ">
+            <label for="curl" class="control-label col-lg-2">Resim Adresi</label>
+            <div class="col-lg-10">
+                <input type="file" required class="form-control " name="ResimURL" accept=".jpg,.jpeg,.png" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                <button class="btn btn-success" type="submit">Kaydet</button>
+                <a href="/Hizmet/Index/"><button class="btn btn-danger" type="button"> İptal</button></a>
+            </div>
+        </div>
+    </form>
+</div>

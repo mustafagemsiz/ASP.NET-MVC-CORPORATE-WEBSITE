@@ -15,9 +15,10 @@ namespace KurumsalWeb.Controllers
     {
         Db_KurumsalContext db = new Db_KurumsalContext();
         // GET: Bilgi
+
         public ActionResult Index()
         {
-
+            db.Configuration.LazyLoadingEnabled = false;
             return View(db.Bilgi.ToList());
         }
 
