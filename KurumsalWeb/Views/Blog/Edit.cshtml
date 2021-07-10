@@ -1,0 +1,58 @@
+﻿@model KurumsalWeb.Models.Model.Blog
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Blog Düzenle</h2>
+<div class="form">
+    @using (Html.BeginForm("Edit", "Blog", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken();
+        @*<form class="form-validate form-horizontal" id="feedback_form" method="POST" action="/Blog/Create/" enctype="multipart/form-data">*@
+        <div class="form-group ">
+            <label for="cname" class="control-label col-lg-2">Başlık </label>
+            <div class="col-lg-10">
+                <input class="form-control" name="Baslik" minlength="5" type="text" required value="@Model.Baslik"/>
+            </div>
+        </div>
+        <div class="form-group ">
+            <label for="cemail" class="control-label col-lg-2" required>Kategori </label>
+            <div class="col-lg-10 ">
+                @Html.DropDownList("KategoriId", null, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group ">
+            <label for="cemail" class="control-label col-lg-2">İçerik </label>
+            <div class="col-lg-10">
+                <textarea class="ckeditor" name="Icerik" required>
+                    @Model.Icerik
+                </textarea>
+            </div>
+        </div>
+        <div class="form-group ">
+            <label for="curl" class="control-label col-lg-2">Mevcut Resim</label>
+            <div class="col-lg-10">
+                <img style="padding:10px" src="@Model.ResimURL" width="200" height="200" alt="Alternate Text" />
+            </div>
+        </div>
+        
+        <div class="form-group " >
+            <label for="curl" class="control-label col-lg-2">Resim Değiştir </label>
+            <div class="col-lg-10">
+                <input class="form-control " type="file" name="ResimURL" accept=".jpg,.png,.jpeg"  />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10" style="padding-top:10px">
+                <button class="btn btn-success" type="submit">Kaydet</button>
+                <a href="/Blog/Index/"><button class="btn btn-danger" type="button">İptal</button></a>
+            </div>
+        </div>
+        @*</form>*@
+
+
+    }
+</div>
+
+

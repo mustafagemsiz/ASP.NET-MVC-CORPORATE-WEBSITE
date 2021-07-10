@@ -1,0 +1,10 @@
+﻿@model IEnumerable<KurumsalWeb.Models.Model.Blog>
+<ul class="recent">
+    @foreach (var item in Model)
+    {
+        <li>
+            <h6><a href="/Home/BlogDetay/@item.BlogId">@item.Baslik</a></h6>
+        </li>
+    }
+
+</ul>

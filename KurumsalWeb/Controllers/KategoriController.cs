@@ -15,13 +15,12 @@ namespace KurumsalWeb.Controllers
     {
         private Db_KurumsalContext db = new Db_KurumsalContext();
 
-        // GET: Kategori
+       
         public ActionResult Index()
         {
             return View(db.Kategori.ToList());
         }
 
-        // GET: Kategori/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,15 +35,13 @@ namespace KurumsalWeb.Controllers
             return View(kategori);
         }
 
-        // GET: Kategori/Create
+        
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Kategori/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+  
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "KategoriId,KategoriAd,Aciklama")] Kategori kategori)
@@ -59,7 +56,7 @@ namespace KurumsalWeb.Controllers
             return View(kategori);
         }
 
-        // GET: Kategori/Edit/5
+        
         public ActionResult Edit(int? id)
         {
             if (id == null)

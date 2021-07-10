@@ -1,0 +1,47 @@
+﻿@model KurumsalWeb.Models.Model.Slider
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h3>Silmek mi istiyorsun?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Baslik)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Baslik)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Aciklama)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Aciklama)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ResimURL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ResimURL)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Evet" class="btn btn-danger" />
+            @Html.ActionLink("Hayır", "Index", null, new { @class = "btn btn-primary" })
+        </div>
+    }
+</div>

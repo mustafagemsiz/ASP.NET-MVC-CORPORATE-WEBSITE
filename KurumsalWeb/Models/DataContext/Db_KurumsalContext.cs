@@ -20,6 +20,8 @@ namespace KurumsalWeb.Models.DataContext
         public DbSet<Hizmet> Hizmet { get; set; }
         public DbSet<İletisim> İletisim { get; set; }
         public DbSet<Kategori> Kategori { get; set; }
+        public DbSet<Slider> Slider { get; set; }
+        public DbSet<Yorum> Yorum { get; set; }
 
     }
 }

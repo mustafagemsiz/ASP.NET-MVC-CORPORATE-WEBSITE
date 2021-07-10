@@ -1,0 +1,43 @@
+﻿@model IEnumerable<KurumsalWeb.Models.Model.Slider>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<p>
+    @Html.ActionLink("Yeni Ekle", "Create", null, new { @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Baslik)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Aciklama)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ResimURL)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Baslik)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Aciklama)
+        </td>
+        <td>
+            <img src="@item.ResimURL" width="150" height="50" alt="Alternate Text" />
+        </td>
+        <td>
+            @Html.ActionLink("Güncelle", "Edit", new { id=item.SliderId }, new { @class = "btn btn-warning" })
+            @Html.ActionLink("Sil", "Delete", new { id=item.SliderId }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>

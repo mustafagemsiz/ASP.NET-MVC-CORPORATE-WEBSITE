@@ -12,6 +12,7 @@ namespace KurumsalWeb.Controllers
     public class HakkimizdaController : Controller
     {
         Db_KurumsalContext db = new Db_KurumsalContext();
+
         // GET: Hakkimizda
         public ActionResult Index()
         {

@@ -1,0 +1,61 @@
+﻿@model KurumsalWeb.Models.Model.Yorum
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h3>Silmek istediğine emin misin?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+             Başlık
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Blog.Baslik)
+        </dd>
+
+        <dt>
+            Ad Soyad
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdSoyad)
+        </dd>
+
+        <dt>
+          E-posta
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Eposta)
+        </dd>
+
+        <dt>
+            Yorum
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Incerik)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Onay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Onay)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Sil" class="btn btn-danger" /> 
+            @Html.ActionLink("Geri dön", "Index",null, new { @class = "btn btn-info" })
+        </div>
+    }
+</div>

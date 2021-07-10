@@ -36,7 +36,7 @@ namespace KurumsalWeb.Controllers
                     WebImage img = new WebImage(ResimURL.InputStream);
                     FileInfo imgInfo = new FileInfo(ResimURL.FileName);
                     string hizmetName = Guid.NewGuid().ToString() + imgInfo.Extension;
-                    img.Resize(500, 500);
+                    img.Resize(800, 600);
                     img.Save(@"~/Uploads/Hizmet/" + hizmetName);
 
                     hizmet.ResimURL = @"/Uploads/Hizmet/" + hizmetName;
@@ -79,7 +79,7 @@ namespace KurumsalWeb.Controllers
                     WebImage img = new WebImage(ResimURL.InputStream);
                     FileInfo imgInfo = new FileInfo(ResimURL.FileName);
                     string hizmetName = Guid.NewGuid().ToString() + imgInfo.Extension;
-                    img.Resize(500, 500);
+                    img.Resize(800, 600);
                     img.Save(@"~/Uploads/Hizmet/" + hizmetName);
 
                     h.ResimURL = @"/Uploads/Hizmet/" + hizmetName;
